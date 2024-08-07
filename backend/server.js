@@ -7,7 +7,7 @@ dotenv.config();
 
 const cors = require("cors");
 const corsOptions = {
-  origin: "https://email-using-nodemailer-app.vercel.app",
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 };
