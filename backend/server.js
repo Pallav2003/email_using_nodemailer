@@ -7,8 +7,7 @@ dotenv.config();
 
 const cors = require("cors");
 const corsOptions = {
-  origin: ["https://deploy-mern-1whq.vercel.app"],
-  methods: ["POST", "GET"],
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 };
