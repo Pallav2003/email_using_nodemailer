@@ -43,7 +43,7 @@ export default function MyForm() {
         setMessage("");
       } else {
         const errorData = await response.json();
-        setError(errorData.message || "Failed to send email.");
+        console.error(errorData);
       }
     } catch (error) {
       setError("Network error occurred.");
