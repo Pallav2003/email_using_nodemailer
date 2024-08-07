@@ -7,7 +7,8 @@ dotenv.config();
 
 const cors = require("cors");
 const corsOptions = {
-  origin: "*",
+  origin: ["https://deploy-mern-1whq.vercel.app"],
+  methods: ["POST", "GET"],
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -18,11 +19,11 @@ app.use(express.json());
 
 app.use("/email", emailRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Hello World!");
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
