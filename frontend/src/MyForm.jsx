@@ -17,7 +17,7 @@ export default function MyForm() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const baseUrl = "http://localhost:8000";
+  const baseUrl = "https://email-using-nodemailer.vercel.app";
 
   const sendEmail = async () => {
     let dataSend = {
