@@ -26,21 +26,32 @@ export default function MyForm() {
       message: message,
     };
 
-    await fetch(`${baseUrl}/email/sendEmail`, {
-      method: "POST",
-      body: JSON.stringify(dataSend),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        if (res.status > 199 && res.status < 300) {
-          alert("Send Successfully !");
-        }
+    try {
+      const response = await fetch(`${baseUrl}/email/sendEmail`, {
+        method: "POST",
+        body: JSON.stringify(dataSend),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
+
+      if (response.ok) {
+        alert("Email sent successfully!");
+        setEmail(""); // Reset form fields
+        setSubject("");
+        setMessage("");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || "Failed to send email.");
+      }
+    } catch (error) {
+      setError("Network error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
+  
   return (
     <Flex
       minH={"100vh"}
